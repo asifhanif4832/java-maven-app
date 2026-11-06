@@ -1,9 +1,5 @@
 def buildJar(){
-  when{
-    expression{
-      BRANCH_NAME=="new"
-    }
-  }
+  
   echo 'building the jar file'
   sh 'mvn package'
 }
