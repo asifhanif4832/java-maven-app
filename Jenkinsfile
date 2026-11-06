@@ -1,14 +1,22 @@
+dev gv
 pipeline{
   agent any
   tools{
     maven 'maven'
   }
   stages{
+     stage("init"){
+      steps{
+        script{
+        gv=load 'scripts.groovy'
+        }
+        
+      }
+    }
     stage("build jar file"){
       steps{
         script{
-          echo 'building the jar file'
-          sh 'mvn package'
+        gv.buildJar()
         }
         
       }
@@ -16,11 +24,7 @@ pipeline{
     stage("build image"){
       steps{
         script{
-          echo 'building the docker image'
-          withCredentials([usernamePassword(credentialsId:'jenkins-pipeline' , passwordVariable:'PASS', usernameVariable:'USER')]){
-            sh 'docker build -t asifhanif01/java-maven-app:jma-1.1 .'
-            sh 'echo $PASS | docker login -u $USER --password-stdin'
-            sh 'docker push asifhanif01/java-maven-app:jma-1.1'
+          gv.buildImage()
           }
           
         }
