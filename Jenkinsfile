@@ -1,7 +1,7 @@
 pipeline{
   agent any
   tools{
-    maven 'maven-3.10.0'
+    maven 'maven'
   }
   stages{
     stage("build jar file"){
