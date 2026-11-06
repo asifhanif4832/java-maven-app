@@ -1,4 +1,4 @@
-dev gv
+def gv
 pipeline{
   agent any
   tools{
@@ -30,8 +30,6 @@ pipeline{
         }
         
       }
-    
-   
-    
   }
+}
 
