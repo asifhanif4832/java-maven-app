@@ -1,3 +1,4 @@
+#!/user/bin/env groovy
 def gv
 pipeline{
   agent any
@@ -16,12 +17,12 @@ pipeline{
     stage("build jar file"){
       when{
     expression{
-      BRANCH_NAME=="new"
+      BRANCH_NAME=="jenkins-shared-lib"
     }
   }
       steps{
         script{
-        gv.buildJar()
+       buildJar()
         }
         
       }
@@ -29,7 +30,7 @@ pipeline{
     stage("build image"){
       steps{
         script{
-          gv.buildImage()
+         buildImage()
           }
           
         }
