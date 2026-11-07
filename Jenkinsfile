@@ -18,7 +18,7 @@ pipeline{
     stage("build jar file"){
       when{
     expression{
-      BRANCH_NAME=="new"
+      env.GIT_BRANCH=="new"
     }
   }
       steps{
