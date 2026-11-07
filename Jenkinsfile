@@ -32,6 +32,8 @@ pipeline{
       steps{
         script{
          buildImage 'asifhanif01/java-maven-app:jma-1.5'
+          dockerLogin()
+          dockerPush 'asifhanif01/java-maven-app:jma-1.5'
           }
           
         }
