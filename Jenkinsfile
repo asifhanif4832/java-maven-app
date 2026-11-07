@@ -31,7 +31,7 @@ pipeline{
     stage("build image"){
       steps{
         script{
-         buildImage()
+         buildImage 'asifhanif01/java-maven-app:jma-1.3'
           }
           
         }
