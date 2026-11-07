@@ -28,3 +28,4 @@ java-app/
 
 3. Open your browser:
    Visit [http://localhost:8080](http://localhost:8080) to interact with the application.
+   hello how are you
