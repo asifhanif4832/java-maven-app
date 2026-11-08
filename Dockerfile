@@ -3,8 +3,9 @@ FROM amazoncorretto:17-alpine
 
 WORKDIR /usr/app
 
-COPY target/simple-java-app-1.0.0.jar app.jar
+COPY target/simple-java-app-*.jar app.jar
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# ENTRYPOINT ["java", "-jar", "app.jar"]
+CMD [ java -jar app.jar]
