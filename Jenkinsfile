@@ -38,7 +38,7 @@ pipeline{
     stage("build image"){
       steps{
         script{
-          withCredentials([script.usernamePassword(credentialsId:'jenkins-pipeline', passwordVariable:'PASS', usernameVariable:'USER')]){
+          withCredentials([usernamePassword(credentialsId:'jenkins-pipeline', passwordVariable:'PASS', usernameVariable:'USER')]){
             sh "docker build -t asifhanif01/java-maven-app: ${Image_Name} ."
             sh 'echo $PASS | docker login -u $USER --password-stdin'
             sh "docker push asifhanif01/java-maven-app: ${Image_Name}"
