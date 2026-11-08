@@ -22,7 +22,7 @@ pipeline{
           sh 'mvn build-helper:parse-version versions:set -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.nextIncrementalVersion} versions:commit'
           def matcher=readFile('pom.xml')=~ '<version>(.+)</version>'
           def version=matcher[0][1]
-          env.Image_Name="&{version}-&{BUILD_NUMBER}"
+          env.Image_Name="&{version}-&{env.BUILD_NUMBER}"
            }
       }
     }
@@ -39,9 +39,9 @@ pipeline{
       steps{
         script{
           withCredentials([usernamePassword(credentialsId:'jenkins-pipeline', passwordVariable:'PASS', usernameVariable:'USER')]){
-            sh "docker build -t asifhanif01/java-maven-app: ${Image_Name} ."
+            sh "docker build -t asifhanif01/java-maven-app: ${env.Image_Name} ."
             sh 'echo $PASS | docker login -u $USER --password-stdin'
-            sh "docker push asifhanif01/java-maven-app: ${Image_Name}"
+            sh "docker push asifhanif01/java-maven-app: ${env.Image_Name}"
           }
           
         }
