@@ -39,12 +39,14 @@ pipeline{
         }
         
       }
-    stage("build image"){
+    stage("deploy the image"){
       steps{
         script{
-         buildImage 'asifhanif01/java-maven-app:jma-1.7'
-         dockerLogin()
-         dockerPush 'asifhanif01/java-maven-app:jma-1.7'
+          def dockerCMD='docker run -d -p 8080:8080 asifhanif01/java-maven-app:jma-1.7'
+          sshagent(credentials: ['ec2-server-key'], executable: '') {
+          sh "ssh -o StrictHostKeyChecking=no ec2-user@16.178.244.173 ${dockerCMD}"
+          
+}
           }
           
         }
