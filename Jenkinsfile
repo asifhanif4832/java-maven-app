@@ -31,9 +31,20 @@ pipeline{
     stage("build image"){
       steps{
         script{
-         buildImage 'asifhanif01/java-maven-app:jma-1.6'
+         buildImage 'asifhanif01/java-maven-app:jma-1.7'
          dockerLogin()
-         dockerPush 'asifhanif01/java-maven-app:jma-1.6'
+         dockerPush 'asifhanif01/java-maven-app:jma-1.7'
+          }
+          
+        }
+        
+      }
+    stage("build image"){
+      steps{
+        script{
+         buildImage 'asifhanif01/java-maven-app:jma-1.7'
+         dockerLogin()
+         dockerPush 'asifhanif01/java-maven-app:jma-1.7'
           }
           
         }
